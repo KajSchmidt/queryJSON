@@ -2,19 +2,80 @@
 <html lang="sv">
     <head>
         <meta charset="UTF8">
-        <title>queryJSON | query</title>
+        <title>queryJSON | demo query</title>
         <style>
 
         </style>
     </head>
+    <body>
+        <form>
 
+        </form>
+        <div id="output_data">
+
+        </div>
+        <div id="input_data">
+
+        </div>
+
+        <script src="qj.js"></script>
+        <script>
+            let demoData = [
+            {
+                "name":"people",
+                "rows": [
+                    {
+                        "id":"aa",
+                        "name":"Angust",
+                        "last_name": "Adler"
+
+                    },
+                    {
+                        "id":"bb",
+                        "name":"Betty",
+                        "last_name": "Brave"
+
+                    },
+                    {
+                        "id":"cc",
+                        "name":"Charles",
+                        "last_name": "Cramer"
+
+                    }
+
+                ]
+            },
+            {
+                "name":"colors",
+                "rows": [
+                    {
+                        "id":"red",
+                        "name":"Red",
+                        "code":"#ff0000"
+
+                    },
+                    {
+                        "id":"green",
+                        "name":"Green",
+                        "code":"#00ff00"
+
+                    },
+                    {
+                        "id":"blue",
+                        "name":"Blue",
+                        "code":"#0000ff"
+
+                    }
+
+                ]
+            }
+        ];
     
-
-
-    <script src="qj.js"></script>
-    <script>
-
-
-
-    </script>
+        
+        
+        const data = new qj(demoData);
+    
+    
+        </script>
+    </body>
 </html>
