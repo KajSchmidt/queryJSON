@@ -4,23 +4,38 @@
 
     }
 
-    query(action) {
-
-
+    /*
+    query = {
+        "tables":[],
+        "columns":[]
     }
 
-    select(action) {
-        let output = [];
+    */
 
-        if (!Array.isArray(action.table)) {
-            action.table = [action.table];
-        }
-        for (let fromTable of action.table) {
+
+    select(query) {
+        if (!query) { throw new Error("No query found."); }
+        if (!query["tables"]) { throw new Error("No tables found in query."); }
+        if (!Array.isArray(query["tables"])) { throw new Error("Tables must be an Array."); }
+        if (query["columns"] && !Array.isArray(query["columns"])) { throw new Error("Columns must be an Array."); }
+        
+        
+        let output = [];
+        
+        for (let from of query["tables"]) {
             for (let table of this.data) {
-                if (table["name"] == fromTable) {
-                    for(let row of table["rows"]) {
-                        output.push(row);
-                        
+                if (table["name"] == from) {
+                    for (let row of table["rows"]) {
+                        if (!query["columns"]) {
+                            output.push(row);
+                        }
+                        else {
+                            let partialRow = {};
+                            for (let column of query["columns"]) {
+                                partialRow[column] = row[column];
+                            }
+                            output.push(partialRow);
+                        }
                     }
                 }
             }
