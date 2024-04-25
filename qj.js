@@ -32,7 +32,7 @@
                         else {
                             let partialRow = {};
                             for (let column of query["columns"]) {
-                                partialRow[column] = row[column];
+                                if (row[column]) { partialRow[column] = row[column]; }
                             }
                             output.push(partialRow);
                         }
