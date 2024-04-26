@@ -22,20 +22,18 @@
         
         let output = [];
         
-        for (let from of query["tables"]) {
-            for (let table of this.data) {
-                if (table["name"] == from) {
-                    for (let row of table["rows"]) {
-                        if (!query["columns"]) {
-                            output.push(row);
+        for (let table of this.data) {
+            if (query["tables"].includes(table["name"])) {
+                for (let row of table["rows"]) {
+                    if (!query["columns"]) {
+                        output.push(row);
+                    }
+                    else {
+                        let partialRow = {};
+                        for (let column of query["columns"]) {
+                            if (row[column]) { partialRow[column] = row[column]; }
                         }
-                        else {
-                            let partialRow = {};
-                            for (let column of query["columns"]) {
-                                if (row[column]) { partialRow[column] = row[column]; }
-                            }
-                            output.push(partialRow);
-                        }
+                        output.push(partialRow);
                     }
                 }
             }
