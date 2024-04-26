@@ -25,13 +25,13 @@
         for (let table of this.data) {
             if (query["tables"].includes(table["name"])) {
                 for (let row of table["rows"]) {
-                    if (!query["columns"]) {
+                    if (!query["columns"]) { //Hämtar hela raden
                         output.push(row);
                     }
-                    else {
+                    else { //Hämtar bara vissa kolumner
                         let partialRow = {};
                         for (let column of query["columns"]) {
-                            if (row[column]) { partialRow[column] = row[column]; }
+                            if (row[column]) { partialRow[column] = row[column]; } //Kollar att kolumnen faktiskt existerar
                         }
                         output.push(partialRow);
                     }
