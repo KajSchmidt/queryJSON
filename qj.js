@@ -1,4 +1,15 @@
-﻿class qj {
+﻿/*
+
+    dataset = [
+        {
+            "name" = "",
+            "rows" = []
+        }
+    ]
+
+*/
+
+class qj {
     constructor(dataset) {
         this.data = dataset;
 
