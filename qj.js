@@ -35,11 +35,6 @@ class qj {
         for (let table of dataset) {
             if (query["tables"].includes(table["name"])) {
 
-                if (query["sort"]) {
-                    this.sortby(table["rows"], query["sort"])
-                }
-
-
                 for (let row of table["rows"]) {
                     if (!query["columns"]) { //Hämtar hela raden
                         output.push(row)
@@ -58,34 +53,7 @@ class qj {
         return output
     }
 
-    sortby(dataset, sort, level = 0) {
-        
-        var by = sort[level]
 
-        this.debug(level)
-
-        dataset.sort((a, b) => {
-            let a_sort
-            let b_sort
-            if (isNaN(a[by]) || isNaN(b[by])) {
-                a_sort = a[by].toUpperCase() 
-                b_sort = b[by].toUpperCase() 
-            }
-            else {
-                a_sort = a[by]
-                b_sort = b[by]
-            }
-            if (a_sort < b_sort)  {
-              return -1;
-            }
-            else if (a_sort > b_sort) {
-              return 1
-            }
-            else {
-                return 0
-            }
-          });
-    }
 
     debug(message) {
         console.log(message)
