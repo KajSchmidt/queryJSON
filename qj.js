@@ -26,8 +26,8 @@ class qj {
     select(query) {
         if (!query) { throw new Error("No query found."); }
         if (!query["tables"]) { throw new Error("No tables found in query.") }
-        if (!Array.isArray(query["tables"])) {  }
-        if (query["columns"] && !Array.isArray(query["columns"])) { throw new Error("Columns must be an Array.") }
+        if (!Array.isArray(query["tables"])) { query["tables"] = [query["tables"]] }
+        if (query["columns"] && !Array.isArray(query["columns"])) { query["columns"] = [query["colums"]] }
         
         let dataset = this.data
         let output = []
