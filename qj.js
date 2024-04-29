@@ -27,24 +27,23 @@ class qj {
         if (!query) { throw new Error("No query found."); }
         if (!query["tables"]) { throw new Error("No tables found in query.") }
         if (!Array.isArray(query["tables"])) { query["tables"] = [query["tables"]] }
-        if (query["columns"] && !Array.isArray(query["columns"])) { query["columns"] = [query["colums"]] }
+        if (query["columns"] && !Array.isArray(query["columns"])) { query["columns"] = [query["columns"]] }
         
         let dataset = this.data
         let output = []
         
         for (let table of dataset) {
             if (query["tables"].includes(table["name"])) {
-
                 for (let row of table["rows"]) {
                     if (!query["columns"]) { //Hämtar hela raden
-                        output.push(row)
+                        output.push(JSON.parse(JSON.stringify(row))) //Undviker att skicka objektreferenser istället för innehållet
                     }
                     else { //Hämtar bara vissa kolumner
                         let partialRow = {};
                         for (let column of query["columns"]) {
                             if (row[column]) { partialRow[column] = row[column] } //Kollar att kolumnen faktiskt existerar
                         }
-                        output.push(partialRow)
+                        output.push(JSON.parse(JSON.stringify(partialRow)))
                     }
                 }
             }
