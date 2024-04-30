@@ -1,6 +1,8 @@
 ﻿
 /*********************************
  * Class: qj()
+ * 
+ * 
  ********************************/
 
 class qj {
@@ -22,13 +24,15 @@ class qj {
 
 /*********************************
  * Method: select()
+ * 
+ * Skickar tillbaka en array av objects utifrån angivna parametrar.
  ********************************/
 
     select(query) {
         /*
             query = {
                 "tables":[],
-                "columns":[]
+                "columns":[],
                 "filters":[]
             }
         */
@@ -69,6 +73,31 @@ class qj {
         return output
     }
 
+
+/*********************************
+ * Method: create()
+ * 
+ * Skapar en ny tabell
+ ********************************/
+
+    create(query) {
+        /*
+            query = {
+                "name":""
+            }
+        */
+        if (!query) { throw new Error("No query."); }
+        if (!query["name"]) { throw new Error("No name in query.") }
+
+        let newTable = {
+            "name":query.name,
+            "rows":[]
+        }
+
+        this.data.push(table)
+
+
+    }
 
 
     debug(message) {
