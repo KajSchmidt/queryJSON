@@ -89,7 +89,7 @@ class qj {
         if (!query) { throw new Error("No query."); }
         if (!query["name"]) { throw new Error("No name in query.") }
 
-        let newTable = {
+        let table = {
             "name":query.name,
             "rows":[]
         }
