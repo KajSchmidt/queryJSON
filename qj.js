@@ -89,12 +89,16 @@ class qj {
         if (!query) { throw new Error("No query."); }
         if (!query["name"]) { throw new Error("No name in query.") }
 
-        let table = {
+        let newTable = {
             "name":query.name,
             "rows":[]
         }
 
-        this.data.push(table)
+        for (let oldTable of this.data) {
+            if (newTable["name"] == oldTable["name"]) { throw new Error("Table name in use") }
+        }
+
+        this.data.push(newTable)
 
 
     }
